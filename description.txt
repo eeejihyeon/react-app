@@ -1,0 +1,13 @@
+  React는 유저에게 보여질 내용을 컨트롤할 수 있다.
+
+  // React JS & JavaScript 차이점 //
+  - JavaScript는 HTML을 만들고 JavaScript에 가져와서 HTML을 업데이트 하는 방식
+  - React는 JavaScript에서 시작(element 생성...)해서 React JS가 그걸 HTML로 번역하는 방식
+
+  // React JS 규칙 //
+  1. HTML을 이 페이지에 직접 작성하지 않는다. (JavaScript 코드를 이용해 만든다.)
+  2. JS: eventlistener = React JS: onEvent
+
+  // JSX 규칙 //
+  1. 컴포넌트의 첫 글자는 반드시 대문자여야 한다. 
+  (const Name을 첫 글자가 소문자인 button이라고 한다면 <button />이라고 입력했을 때 HTML <button> 태그라고 생각한다.)
