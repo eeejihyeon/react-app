@@ -7,7 +7,10 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <script type="text/babel">
+  <!-- <script type="text/babel">
+    //// Not so good way ////
+    // render를 계속 불러줘야 함 (직접 리렌더링 호출)
+
     const root = document.querySelector("#root");
     let counter = 0;
     function countUp() {
@@ -25,5 +28,26 @@
     );
 
     render();
+  </script> -->
+
+  <script type="text/babel">
+    // good way //
+    // React.js 어플 내에서 데이터를 보관하고 업데이트 되어야 하는 구간마다 render를 계속 할 필요 없이 자동으로 리렌더링 해주는 방법
+    const root = document.querySelector("#root");
+
+    const Container = () => {
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
+      return (
+        <div>
+          <h3>Tatal clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
