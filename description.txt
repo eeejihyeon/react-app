@@ -42,3 +42,21 @@ const data = React.useState(0);
 
 // console.log(data);를 해보면 console에 (2) [0,f]배열이 뜨는데,
 0은 let counter = 0;, f는 function countUp() { /code }와 같다
+
+
+
+const Container = () => {
+  const [counter, setCounter] = React.useState(0);
+  const onClick = () => {
+    setCounter(counter + 1);
+  };
+  return (
+    <div>
+      <h3>Tatal clicks: {counter}</h3>
+      <button onClick={onClick}>Click me</button>
+    </div>
+  );
+};
+
+// modifier 함수를 사용해 state를 변경할 때 컴포넌트 자체가 재생성 된다. 
+   (새로운 값을 가지고 리렌더링 되기 때문에 counter 값이 계속 +1로 늘어나는 것을 UI로 확인할 수 있다.)
