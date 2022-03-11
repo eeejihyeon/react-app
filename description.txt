@@ -31,14 +31,15 @@ React는 유저에게 보여질 내용을 컨트롤할 수 있다.
 
 
 //// state ////
-let counter = 0;
+
+① let counter = 0;
 function countUp() {
   // code
 }
 
 ===
 
-const data = React.useState(0);
+② const data = React.useState(0);
 
 // console.log(data);를 해보면 console에 (2) [0,f]배열이 뜨는데,
 0은 let counter = 0;, f는 function countUp() { /code }와 같다
@@ -60,3 +61,14 @@ const Container = () => {
 
 // modifier 함수를 사용해 state를 변경할 때 컴포넌트 자체가 재생성 된다. 
    (새로운 값을 가지고 리렌더링 되기 때문에 counter 값이 계속 +1로 늘어나는 것을 UI로 확인할 수 있다.)
+
+
+
+① setCounter(counter + 1);
+
+===
+
+② setCounter((current) => current + 1);
+
+// modifier 안에는 함수를 넣을 수 있다. 
+// ②의 첫번째 argument는 현재값(counter), return 값이 새로운 state(counter + 1)이 되면서 안전한 코드
