@@ -69,7 +69,7 @@ const Container = () => {
 /// state 세팅 방법 ///
 
 직접 값 설정
-① setCounter(1);
+① setCounter(counter + 1); OR setCounter(1); ...
 
 ===
 
