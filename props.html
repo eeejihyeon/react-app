@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    //// Not so good way ////
+    // component SaveBtn, ConfirmBtn 따로 만들고 App component에 <SaveBtn /><ConfirmBtn />로 넣는 방법
+
+    // function SaveBtn() {
+    //   return (
+    //     <button
+    //       style={{
+    //         backgroundColor: "tomato",
+    //         color: "white",
+    //         padding: "10px 20px",
+    //         border: 0,
+    //         borderRadius: 10,
+    //       }}
+    //     >
+    //       Save Changes
+    //     </button>
+    //   );
+    // }
+    // function ConfirmBtn() {
+    //   return (
+    //     <button
+    //       style={{
+    //         backgroundColor: "tomato",
+    //         color: "white",
+    //         padding: "10px 20px",
+    //         border: 0,
+    //         borderRadius: 10,
+    //       }}
+    //     >
+    //       Confirm
+    //     </button>
+    //   );
+    // }
+
+    //// good way ////
+
+    function Btn({ tomato, change }) {
+      // React.memo 사용해 리렌더 되는 방식 확인
+      // console.log(tomato, "rerender");
+
+      return (
+        <button
+          onClick={change}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            // fontSize: big ? 18 : 16,
+          }}
+        >
+          {tomato}
+        </button>
+      );
+    }
+
+    const MemoBtn = React.memo(Btn);
+
+    function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => {
+        setValue("Revert Changes");
+      };
+      return (
+        <div>
+          <MemoBtn tomato={value} change={changeValue} />
+          <MemoBtn tomato="Continue" />
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

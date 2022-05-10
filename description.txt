@@ -81,3 +81,40 @@ const Container = () => {
 - 함수를 사용하게 되면 리액트가 current가 확실히 현재 값이라는 걸 보장하면서 ①보다 정확하고 안전하다.
 - 현재 state를 기반으로 계산을 하고 싶다면, 함수를 이용(다음 state 값이 현재 값을 바탕으로 나올 수 있도록)
 - ②는 예상치 못한 업데이트가 어디선가 일어났다고 해도, 혼동을 주는 걸 방지 (안전) 
+
+
+//// props ////
+
+- <Component text="a" />의 properties(props)를 
+function Component(props) {~~~}의 argument(props)의 object 안으로 넣는다.
+- props는 첫 번째 유일한 인자이며 Component가 받는 유일한 인자
+
+- props는 오브젝트이기 때문에 {}를 열어 <Component text="a" />의 text를 넣어
+function Component(props) {~~~}에서 (props)를 쓰는 대신 shortcut(지름길)으로
+function Component({text}) {~~~}로 코드 작성하면 데이터가 나오는 부분인 {props.text}를 {text}로 바로 사용할 수 있다.
+=> props object 안에 text가 있다는 걸 알기 때문에 꺼내서 쓰기 가능
+
+// Custom Component
+<Component onClick={value} />의 onClick={value}는 props일 뿐이여서 이벤트 실행X
+function Component(props) {~~~}에 onClick으로 등록(?)을 해줘야 실행
+
+
+//// memo ////
+- 변경되지 않는 데이터를 기억했다가 변경되는 데이터만 리렌더링
+
+function Component({text, change}) {~~~}
+
+const MemoBtn = React.memo(Component);
+
+<Component text={value} change={changeValue} />
+<Component text="1" />
+<Component text="2" />
+<Component text="3" />
+<Component text="4" />
+...
+
+- 어떤 state든 하나라도 변경이 된다면 그 state를 담고 있는 component는 리렌더링 된다.
+- application이 느려지는 원인이 될 수 있기 때문에 변경되는 부분만 리렌더링 하려면 memo를 쓴다.
+- const MemoBtn = React.memo(Component); 
+  <Component />를 <MemoBtn />로 수정하면 변경되는 첫번째 줄만 리렌더링
+
